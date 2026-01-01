@@ -38,9 +38,11 @@ export function Header() {
         </nav>
         
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="hidden md:flex">
-            <Search className="w-5 h-5" />
-          </Button>
+          <Link to="/search">
+            <Button variant="ghost" size="icon" className="hidden md:flex">
+              <Search className="w-5 h-5" />
+            </Button>
+          </Link>
           <Button variant="gradient" size="sm">
             <Plus className="w-4 h-4" />
             <span className="hidden sm:inline">Ask Freely</span>
