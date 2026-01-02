@@ -1,0 +1,233 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { MessageCircleQuestion, Loader2 } from "lucide-react";
+
+const questionSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(10, "Title must be at least 10 characters")
+    .max(200, "Title must be less than 200 characters"),
+  details: z
+    .string()
+    .trim()
+    .min(20, "Please provide more details (at least 20 characters)")
+    .max(2000, "Details must be less than 2000 characters"),
+  category: z.string().min(1, "Please select a category"),
+  notify: z.boolean().default(false),
+  email: z.string().trim().email("Enter a valid email").optional(),
+}).refine(
+  (data) => !data.notify || !!data.email,
+  { message: "Email required to get notifications", path: ["email"] }
+);
+
+type QuestionFormData = z.infer<typeof questionSchema>;
+
+const categories = [
+  "Dating",
+  "Culture",
+  "Career",
+  "Money",
+  "Relationships",
+  "Health",
+  "Life",
+];
+
+interface AskQuestionModalProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+export function AskQuestionModal({ open, onOpenChange }: AskQuestionModalProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<QuestionFormData>({
+    resolver: zodResolver(questionSchema),
+    defaultValues: {
+      title: "",
+      details: "",
+      category: "",
+      notify: false,
+      email: "",
+    },
+  });
+
+  const selectedCategory = watch("category");
+  const notify = watch("notify");
+
+  const onSubmit = async (data: QuestionFormData) => {
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    
+    toast({
+      title: "Question posted!",
+      description: data.notify && data.email
+        ? `Your question is live. We'll email ${data.email} when answers arrive.`
+        : "Your question is now live and ready for answers.",
+    });
+    
+    reset();
+    onOpenChange(false);
+    setIsSubmitting(false);
+  };
+
+  const handleClose = () => {
+    reset();
+    onOpenChange(false);
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogContent className="sm:max-w-[550px] bg-card border-border">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2 text-xl">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              <MessageCircleQuestion className="w-5 h-5 text-primary-foreground" />
+            </div>
+            Ask Freely
+          </DialogTitle>
+          <DialogDescription>
+            No judgment here. Ask what you've always wanted to know.
+          </DialogDescription>
+        </DialogHeader>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-2">
+          <div className="space-y-2">
+            <Label htmlFor="title">Your Question</Label>
+            <Input
+              id="title"
+              placeholder="What have you always wanted to ask?"
+              className="bg-background border-border/50"
+              {...register("title")}
+            />
+            {errors.title && (
+              <p className="text-sm text-destructive">{errors.title.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="details">More Details</Label>
+            <Textarea
+              id="details"
+              placeholder="Share some context or background to help others understand your question better..."
+              className="min-h-[120px] bg-background border-border/50 resize-none"
+              {...register("details")}
+            />
+            {errors.details && (
+              <p className="text-sm text-destructive">{errors.details.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label>Category</Label>
+            <Select
+              value={selectedCategory}
+              onValueChange={(value) => setValue("category", value)}
+            >
+              <SelectTrigger className="bg-background border-border/50">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent className="bg-card border-border">
+                {categories.map((cat) => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.category && (
+              <p className="text-sm text-destructive">{errors.category.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-3 rounded-lg border border-border/50 p-4 bg-background/40">
+            <div className="flex items-start gap-3">
+              <Checkbox
+                id="notify"
+                checked={notify}
+                onCheckedChange={(checked) => setValue("notify", !!checked)}
+              />
+              <div className="space-y-1">
+                <Label htmlFor="notify">Email me when someone answers</Label>
+                <p className="text-sm text-muted-foreground">
+                  We’ll send a notification to the email you provide whenever your question gets a new answer.
+                </p>
+              </div>
+            </div>
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              className="bg-background border-border/50"
+              value={watch("email")}
+              onChange={(e) => setValue("email", e.target.value)}
+              disabled={!notify}
+            />
+            {errors.email && (
+              <p className="text-sm text-destructive">{errors.email.message}</p>
+            )}
+          </div>
+
+          <div className="flex gap-3 pt-2">
+            <Button
+              type="button"
+              variant="outline"
+              className="flex-1"
+              onClick={handleClose}
+              disabled={isSubmitting}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant="gradient"
+              className="flex-1"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Posting...
+                </>
+              ) : (
+                "Post Question"
+              )}
+            </Button>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
