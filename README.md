@@ -1,73 +1,82 @@
-# Welcome to your Lovable project
+# The Unspoken Exchange
 
-## Project info
+A communication-first marketplace MVP by Viridian Network LLC.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Overview
 
-## How can I edit this code?
+The Unspoken Exchange is a React-based marketplace prototype focused on improving buyer and seller communication before a transaction begins. The app combines marketplace listings, structured buyer inquiry forms, seller trust signals, and community intelligence threads.
 
-There are several ways of editing your application.
+## Purpose
 
-**Use Lovable**
+The MVP is designed to reduce low-intent buyer interactions, ghosting, vague messages, lowballing, and wasted seller communication. Instead of encouraging generic messages, buyers submit structured intent details such as readiness, offer amount, transportation, meetup availability, and payment method.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Core Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- Marketplace listing grid with seller trust badges
+- Listing detail pages with item details, seller info, safety notes, and inquiry forms
+- Structured buyer inquiry workflow saved in localStorage for MVP testing
+- Seller dashboard placeholder showing listings, inquiry intent, offers, meetup availability, and readiness indicators
+- Marketplace intelligence section for safety, pricing, scam checks, inspections, and negotiation topics
+- Mobile-friendly navigation and responsive layouts
 
-**Use your preferred IDE**
+## Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui-style components
+- React Router
+- localStorage for temporary MVP inquiry persistence
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Local Development
 
-Follow these steps:
+Install dependencies:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Start the development server:
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Open the local URL printed by Vite, commonly:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```text
+http://127.0.0.1:8080/
+```
 
-**Use GitHub Codespaces**
+If that port is in use, Vite will choose the next available port.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Build
 
-## What technologies are used for this project?
+Create a production build:
 
-This project is built with:
+```sh
+npm run build
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Preview the production build locally:
 
-## How can I deploy this project?
+```sh
+npm run preview
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Run lint checks:
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+npm run lint
+```
 
-Yes, you can!
+## Deployment Notes for HostGator
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This is currently a static frontend MVP. Run `npm run build` and upload the generated `dist` folder contents to the HostGator web root or the target subdirectory.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+For client-side routing to work on HostGator, configure the server to route unknown paths back to `index.html`. When the PHP and MySQL backend is added later, keep the frontend build separate from backend API routes.
+
+## Project Status
+
+Frontend MVP ready for first user testing. Backend authentication, real listings, real inquiry storage, seller accounts, moderation, and PHP/MySQL integration are planned future work.
