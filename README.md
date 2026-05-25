@@ -1,35 +1,17 @@
 # The Unspoken Exchange
 
-A communication-first marketplace MVP by Viridian Network LLC.
+The Unspoken Exchange is a communication-first marketplace MVP focused on improving buyer and seller interactions before a transaction begins. It combines marketplace listings, structured buyer inquiry forms, seller trust signals, and community intelligence threads.
 
-## Overview
-
-The Unspoken Exchange is a React-based marketplace prototype focused on improving buyer and seller communication before a transaction begins. The app combines marketplace listings, structured buyer inquiry forms, seller trust signals, and community intelligence threads.
-
-## Purpose
-
-The MVP is designed to reduce low-intent buyer interactions, ghosting, vague messages, lowballing, and wasted seller communication. Instead of encouraging generic messages, buyers submit structured intent details such as readiness, offer amount, transportation, meetup availability, and payment method.
-
-## Core Features
-
-- Marketplace listing grid with seller trust badges
-- Listing detail pages with item details, seller info, safety notes, and inquiry forms
-- Structured buyer inquiry workflow saved in localStorage for MVP testing
-- Seller dashboard placeholder showing listings, inquiry intent, offers, meetup availability, and readiness indicators
-- Marketplace intelligence section for safety, pricing, scam checks, inspections, and negotiation topics
-- Mobile-friendly navigation and responsive layouts
+Built by Viridian Network LLC.
 
 ## Tech Stack
 
+- Vite
 - React
 - TypeScript
-- Vite
 - Tailwind CSS
-- shadcn/ui-style components
-- React Router
-- localStorage for temporary MVP inquiry persistence
 
-## Local Development
+## Local Setup
 
 Install dependencies:
 
@@ -43,40 +25,22 @@ Start the development server:
 npm run dev
 ```
 
-Open the local URL printed by Vite, commonly:
+## Production Build
 
-```text
-http://127.0.0.1:8080/
-```
-
-If that port is in use, Vite will choose the next available port.
-
-## Build
-
-Create a production build:
+Create the production build:
 
 ```sh
 npm run build
 ```
 
-Preview the production build locally:
+The generated static site will be written to `dist`.
 
-```sh
-npm run preview
-```
+## HostGator Deployment
 
-Run lint checks:
+1. Run `npm run build`.
+2. Open the generated `dist` directory.
+3. Upload the contents of `dist` into HostGator `public_html`.
 
-```sh
-npm run lint
-```
+Upload the files and folders inside `dist`, not the `dist` folder itself.
 
-## Deployment Notes for HostGator
-
-This is currently a static frontend MVP. Run `npm run build` and upload the generated `dist` folder contents to the HostGator web root or the target subdirectory.
-
-For client-side routing to work on HostGator, configure the server to route unknown paths back to `index.html`. When the PHP and MySQL backend is added later, keep the frontend build separate from backend API routes.
-
-## Project Status
-
-Frontend MVP ready for first user testing. Backend authentication, real listings, real inquiry storage, seller accounts, moderation, and PHP/MySQL integration are planned future work.
+The `public/.htaccess` file is included so Vite/React client-side routes resolve through `index.html` on Apache/cPanel hosting.
