@@ -8,7 +8,10 @@ import Marketplace from "./pages/Marketplace";
 import Search from "./pages/Search";
 import ListingDetail from "./pages/ListingDetail";
 import Dashboard from "./pages/Dashboard";
+import SellerSignin from "./pages/SellerSignin";
+import SellerSignup from "./pages/SellerSignup";
 import NotFound from "./pages/NotFound";
+import { ProtectedSellerRoute } from "./components/auth/ProtectedSellerRoute";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +25,16 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/listing/:id" element={<ListingDetail />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/seller-signin" element={<SellerSignin />} />
+          <Route path="/seller-signup" element={<SellerSignup />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedSellerRoute>
+                <Dashboard />
+              </ProtectedSellerRoute>
+            }
+          />
           <Route path="/search" element={<Search />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
