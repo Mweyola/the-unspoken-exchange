@@ -106,7 +106,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              &copy; 2024 The Unspoken Exchange. Built by Viridian Network LLC.
+              &copy; 2024 Unfilteredqa. Built by Viridian Network LLC.
             </p>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <Link to="/search" className="hover:text-foreground transition-colors">Community Guidelines</Link>

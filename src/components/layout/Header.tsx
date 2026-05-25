@@ -25,7 +25,7 @@ export function Header() {
               <MessageCircleQuestion className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="font-display text-lg sm:text-xl font-semibold tracking-tight max-w-[170px] sm:max-w-none truncate">
-              <span className="gradient-text">The Unspoken Exchange</span>
+              <span className="gradient-text">Unfilteredqa</span>
             </span>
           </Link>
           

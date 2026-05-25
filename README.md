@@ -1,6 +1,6 @@
-# The Unspoken Exchange
+# Unfilteredqa
 
-The Unspoken Exchange is a communication-first marketplace MVP focused on improving buyer and seller interactions before a transaction begins. It combines marketplace listings, structured buyer inquiry forms, seller trust signals, and community intelligence threads.
+Unfilteredqa is a communication-first marketplace MVP focused on improving buyer and seller interactions before a transaction begins. It combines marketplace listings, structured buyer inquiry forms, seller trust signals, and community intelligence threads.
 
 Built by Viridian Network LLC.
 
