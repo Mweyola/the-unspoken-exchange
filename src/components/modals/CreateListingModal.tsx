@@ -129,7 +129,7 @@ export function CreateListingModal({ open, onOpenChange }: CreateListingModalPro
             Create Listing
           </DialogTitle>
           <DialogDescription>
-            List something to sell in the community marketplace.
+            Add clear item details so serious buyers can make informed inquiries.
           </DialogDescription>
         </DialogHeader>
 
@@ -202,7 +202,7 @@ export function CreateListingModal({ open, onOpenChange }: CreateListingModalPro
             <Label htmlFor="description">Description</Label>
             <Textarea
               id="description"
-              placeholder="Describe your item, condition, and any other relevant details..."
+              placeholder="Describe condition, pickup expectations, payment terms, and anything buyers should inspect..."
               className="min-h-[100px] bg-background border-border/50 resize-none"
               {...register("description")}
             />

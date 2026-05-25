@@ -40,13 +40,12 @@ const questionSchema = z.object({
 type QuestionFormData = z.infer<typeof questionSchema>;
 
 const categories = [
-  "Dating",
-  "Culture",
-  "Career",
-  "Money",
-  "Relationships",
-  "Health",
-  "Life",
+  "Safety",
+  "Fair Pricing",
+  "Scam Checks",
+  "Inspections",
+  "Negotiation",
+  "Seller Tips",
 ];
 
 interface AskQuestionModalProps {
@@ -83,8 +82,8 @@ export function AskQuestionModal({ open, onOpenChange }: AskQuestionModalProps) 
     await new Promise((resolve) => setTimeout(resolve, 1000));
     
     toast({
-      title: "Question posted!",
-      description: "Your question is now live and ready for answers.",
+      title: "Community question posted",
+      description: "Your marketplace intelligence thread is ready for replies.",
     });
     
     reset();
@@ -105,19 +104,19 @@ export function AskQuestionModal({ open, onOpenChange }: AskQuestionModalProps) 
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <MessageCircleQuestion className="w-5 h-5 text-primary-foreground" />
             </div>
-            Ask Freely
+            Ask the Community
           </DialogTitle>
           <DialogDescription>
-            No judgment here. Ask what you've always wanted to know.
+            Get practical advice on pricing, safety, scams, inspections, or negotiation.
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-2">
           <div className="space-y-2">
-            <Label htmlFor="title">Your Question</Label>
+            <Label htmlFor="title">Marketplace Question</Label>
             <Input
               id="title"
-              placeholder="What have you always wanted to ask?"
+              placeholder="What should buyers or sellers know?"
               className="bg-background border-border/50"
               {...register("title")}
             />
@@ -130,7 +129,7 @@ export function AskQuestionModal({ open, onOpenChange }: AskQuestionModalProps) 
             <Label htmlFor="details">More Details</Label>
             <Textarea
               id="details"
-              placeholder="Share some context or background to help others understand your question better..."
+              placeholder="Share listing details, price, condition, red flags, or negotiation context..."
               className="min-h-[120px] bg-background border-border/50 resize-none"
               {...register("details")}
             />
@@ -183,7 +182,7 @@ export function AskQuestionModal({ open, onOpenChange }: AskQuestionModalProps) 
                   Posting...
                 </>
               ) : (
-                "Post Question"
+                "Post Community Question"
               )}
             </Button>
           </div>

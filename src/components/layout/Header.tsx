@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircleQuestion, ShoppingBag, Plus, Search } from "lucide-react";
+import { MessageCircleQuestion, ShoppingBag, Plus, Search, ShieldCheck, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -24,8 +24,8 @@ export function Header() {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform">
               <MessageCircleQuestion className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="font-display text-xl font-semibold tracking-tight">
-              <span className="gradient-text">Unfiltered</span>
+            <span className="font-display text-lg sm:text-xl font-semibold tracking-tight max-w-[170px] sm:max-w-none truncate">
+              <span className="gradient-text">The Unspoken Exchange</span>
             </span>
           </Link>
           
@@ -35,7 +35,7 @@ export function Header() {
                 variant={location.pathname === "/" ? "secondary" : "ghost"} 
                 size="sm"
               >
-                Questions
+                Home
               </Button>
             </Link>
             <Link to="/marketplace">
@@ -45,6 +45,15 @@ export function Header() {
               >
                 <ShoppingBag className="w-4 h-4 mr-1" />
                 Marketplace
+              </Button>
+            </Link>
+            <Link to="/dashboard">
+              <Button
+                variant={location.pathname === "/dashboard" ? "secondary" : "ghost"}
+                size="sm"
+              >
+                <LayoutDashboard className="w-4 h-4 mr-1" />
+                Dashboard
               </Button>
             </Link>
           </nav>
@@ -64,12 +73,30 @@ export function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48 bg-card border-border">
+                <DropdownMenuItem asChild className="cursor-pointer md:hidden">
+                  <Link to="/marketplace">
+                    <ShoppingBag className="w-4 h-4 mr-2" />
+                    Browse Listings
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="cursor-pointer md:hidden">
+                  <Link to="/dashboard">
+                    <LayoutDashboard className="w-4 h-4 mr-2" />
+                    Seller Dashboard
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="cursor-pointer md:hidden">
+                  <Link to="/search">
+                    <Search className="w-4 h-4 mr-2" />
+                    Search
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem 
                   className="cursor-pointer"
                   onClick={() => setAskQuestionOpen(true)}
                 >
-                  <MessageCircleQuestion className="w-4 h-4 mr-2" />
-                  Ask a Question
+                  <ShieldCheck className="w-4 h-4 mr-2" />
+                  Ask Community
                 </DropdownMenuItem>
                 <DropdownMenuItem 
                   className="cursor-pointer"

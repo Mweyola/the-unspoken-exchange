@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ShoppingBag } from "lucide-react";
+import { ArrowRight, ShieldCheck, ShoppingBag } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { HeroSection } from "@/components/home/HeroSection";
 import { QuestionCard } from "@/components/questions/QuestionCard";
@@ -22,11 +22,10 @@ const Index = () => {
       <HeroSection />
       
       <main className="container mx-auto px-4 pb-16">
-        {/* Questions Section */}
         <section className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="font-display text-2xl md:text-3xl font-semibold">
-              Trending Questions
+              Marketplace Intelligence
             </h2>
           </div>
           
@@ -45,21 +44,22 @@ const Index = () => {
           </div>
           
           <div className="mt-8 text-center">
-            <Button variant="outline" size="lg">
-              View All Questions
-              <ArrowRight className="w-4 h-4 ml-2" />
+            <Button asChild variant="outline" size="lg">
+              <Link to="/search">
+                Explore Community Threads
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
             </Button>
           </div>
         </section>
         
-        {/* Marketplace Preview */}
         <section>
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="font-display text-2xl md:text-3xl font-semibold mb-2">
                 Community Marketplace
               </h2>
-              <p className="text-muted-foreground">Buy and sell within our community</p>
+              <p className="text-muted-foreground">Browse listings with seller trust signals and structured buyer intent.</p>
             </div>
             <Link to="/marketplace">
               <Button variant="ghost">
@@ -82,19 +82,36 @@ const Index = () => {
             ))}
           </div>
         </section>
+
+        <section className="mt-16 glass-effect rounded-xl p-6 md:p-8">
+          <div className="flex items-start gap-3 mb-5">
+            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+              <ShieldCheck className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h2 className="font-display text-2xl md:text-3xl font-semibold">Marketplace Safety</h2>
+              <p className="text-muted-foreground">Simple habits that reduce wasted trips and risky exchanges.</p>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+            <div className="rounded-lg bg-background/50 border border-border/50 p-4">Meet in public places with good lighting and people nearby.</div>
+            <div className="rounded-lg bg-background/50 border border-border/50 p-4">Verify item condition before sending payment or leaving the meetup.</div>
+            <div className="rounded-lg bg-background/50 border border-border/50 p-4">Avoid suspicious payment links, overpayment requests, and rushed off-platform deals.</div>
+            <div className="rounded-lg bg-background/50 border border-border/50 p-4">Confirm time, location, payment method, and transportation before traveling.</div>
+          </div>
+        </section>
       </main>
       
-      {/* Footer */}
       <footer className="border-t border-border/50 py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              &copy; 2024 Unfiltered. A safe space for honest questions.
+              &copy; 2024 The Unspoken Exchange. Built by Viridian Network LLC.
             </p>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition-colors">Community Guidelines</a>
-              <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-              <a href="#" className="hover:text-foreground transition-colors">Terms</a>
+              <Link to="/search" className="hover:text-foreground transition-colors">Community Guidelines</Link>
+              <Link to="/dashboard" className="hover:text-foreground transition-colors">Seller Dashboard</Link>
+              <Link to="/marketplace" className="hover:text-foreground transition-colors">Marketplace</Link>
             </div>
           </div>
         </div>

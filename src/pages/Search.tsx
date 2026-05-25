@@ -9,7 +9,7 @@ import { ListingCard } from "@/components/marketplace/ListingCard";
 import { mockQuestions, mockListings } from "@/data/mockData";
 import { Search as SearchIcon, MessageCircle, ShoppingBag, SlidersHorizontal, X } from "lucide-react";
 
-const questionCategories = ["All", "Dating", "Culture", "Career", "Money", "Relationships", "Health", "Life"];
+const questionCategories = ["All", "Safety", "Fair Pricing", "Scam Checks", "Inspections", "Negotiation", "Seller Tips"];
 const listingCategories = ["All", "Furniture", "Electronics", "Home Decor", "Sports", "Fashion"];
 
 type SortOption = "recent" | "popular" | "category";
@@ -109,10 +109,10 @@ export default function Search() {
         {/* Search Header */}
         <div className="max-w-4xl mx-auto mb-8">
           <h1 className="font-display text-3xl md:text-4xl font-bold mb-2">
-            <span className="gradient-text">Search</span> Everything
+            <span className="gradient-text">Search</span> Marketplace Signals
           </h1>
           <p className="text-muted-foreground">
-            Find questions, answers, and marketplace items across the community.
+            Find listings, safety threads, pricing checks, and community advice before you buy or sell.
           </p>
         </div>
 
@@ -121,7 +121,7 @@ export default function Search() {
           <div className="relative">
             <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
-              placeholder="Search questions and marketplace items..."
+              placeholder="Search listings, pricing advice, scams, or safety topics..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-12 pr-12 h-14 text-lg bg-card border-border/50 focus:border-primary/50"
@@ -146,12 +146,12 @@ export default function Search() {
               <TabsList className="grid w-full sm:w-auto grid-cols-2 bg-card/50">
                 <TabsTrigger value="questions" className="gap-2">
                   <MessageCircle className="w-4 h-4" />
-                  Questions
+                  Intelligence
                   <span className="text-xs text-muted-foreground">({filteredQuestions.length})</span>
                 </TabsTrigger>
                 <TabsTrigger value="listings" className="gap-2">
                   <ShoppingBag className="w-4 h-4" />
-                  Marketplace
+                  Listings
                   <span className="text-xs text-muted-foreground">({filteredListings.length})</span>
                 </TabsTrigger>
               </TabsList>
@@ -255,7 +255,7 @@ export default function Search() {
               ) : (
                 <div className="text-center py-16">
                   <MessageCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-lg font-medium mb-2">No questions found</h3>
+                  <h3 className="text-lg font-medium mb-2">No intelligence threads found</h3>
                   <p className="text-muted-foreground">Try adjusting your search or filters.</p>
                 </div>
               )}

@@ -1,15 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { Heart, Globe, Briefcase, DollarSign, Users, Sparkles, Activity, MessageCircle } from "lucide-react";
+import { BadgeDollarSign, Handshake, SearchCheck, ShieldAlert, ShieldCheck, Sparkles, Store } from "lucide-react";
 
 const categories = [
   { name: "All", icon: Sparkles, active: true },
-  { name: "Dating", icon: Heart },
-  { name: "Culture", icon: Globe },
-  { name: "Career", icon: Briefcase },
-  { name: "Money", icon: DollarSign },
-  { name: "Relationships", icon: Users },
-  { name: "Health", icon: Activity },
-  { name: "Life", icon: MessageCircle },
+  { name: "Safety", icon: ShieldCheck },
+  { name: "Fair Pricing", icon: BadgeDollarSign },
+  { name: "Scam Checks", icon: ShieldAlert },
+  { name: "Inspections", icon: SearchCheck },
+  { name: "Negotiation", icon: Handshake },
+  { name: "Seller Tips", icon: Store },
 ];
 
 interface CategoryFilterProps {
